@@ -1,0 +1,12 @@
+.grid{
+    background-color: blue;
+    height: 60vh;
+    width: 80vw;
+    display: grid;
+}
+
+.shelf{
+    border: solid yellow 2px;
+    font-size: 10px;
+    color: white;
+}
