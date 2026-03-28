@@ -44,7 +44,6 @@ nav .logo img{
   object-fit: cover;
   height: 200px;
   width: 100px;
-  
 }
 nav .title{
     font-size: 0.8rem;
@@ -66,18 +65,13 @@ nav .add{
     font-weight: 1000;
 }
 
-/* frame */
-.frame{
+.container{
     margin: 2%;
     width: auto;
     height: 80%;
-    /* background-color: blue; */
     overflow: auto;
 }
-.frame .container{
-    display: grid;
-}
-.frame .container .shelf{
+.container .shelf{
     display: grid;
     grid-template-columns: repeat(auto-fit, 10%);
     justify-items: center;
@@ -98,4 +92,12 @@ nav .add{
     background-color: green;
     margin-top: auto;
     margin-bottom: 2rem;
+}
+.container{
+    overflow: auto;
+}
+.cover{
+    background-color: green;
+    width: 10%;
+    height: 150px;
 }
