@@ -1,3 +1,2 @@
 # library
-create each shelf with 10 columns grid
-and creat functions to add more shelves when the array is more than 10 and add new things to it
+I have to add the book review page and add comment and faviroute quotes on the page
