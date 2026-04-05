@@ -38,7 +38,6 @@ function newShelf (){
 
 // creat book covers and show info on screen
 function showBook (i){
-
     let cover = document.createElement('div')
     cover.className = 'cover'
     if(library.length > 10 && library.length<20){
@@ -191,4 +190,91 @@ addBtn.addEventListener('click', e => {
     closeBtn.addEventListener('click', e=>{
         addPage.remove()
     })
+})
+
+// book Prev Window
+shelf.addEventListener('click', e=>{
+    let cover = e.target.closest('.cover')
+    if(cover){
+    const bookPrevCon = document.createElement('div')
+    const wallpaper = document.querySelector('.wallpaper')
+    const wallpaperPrev = document.createElement('div')
+    const closeBtnPrev = document.createElement('div')
+    const titlePrev = document.createElement('div')
+    const pageswrapperPrev = document.createElement('div')
+    const rightpagePrev = document.createElement('div')
+    const authorPrev = document.createElement('div')
+    const pagesPrev = document.createElement('div')
+    const leftpagePrev = document.createElement('div')
+    const commentlPrev = document.createElement('lable')
+    const commenttPrev = document.createElement('textarea')
+    const quotelPrev = document.createElement('lable')
+    const quotetPrev = document.createElement('textarea')
+    const readPrev = document.createElement('div')
+    const yesPrev = document.createElement('div')
+    const readingPrev = document.createElement('div')
+    const wanttoPrev = document.createElement('div')
+    const p0 = document.createElement('p')
+    const p1 = document.createElement('p')
+    const p2 = document.createElement('p')
+    const p3 = document.createElement('p')
+            // appending
+    wallpaper.appendChild(bookPrevCon)
+    bookPrevCon.appendChild(wallpaperPrev)
+    wallpaperPrev.appendChild(closeBtnPrev)
+    wallpaperPrev.appendChild(titlePrev)
+    wallpaperPrev.appendChild(pageswrapperPrev)
+    pageswrapperPrev.appendChild(rightpagePrev)
+    rightpagePrev.appendChild(authorPrev)
+    rightpagePrev.appendChild(pagesPrev)
+    pageswrapperPrev.appendChild(leftpagePrev)
+    leftpagePrev.appendChild(commentlPrev)
+    leftpagePrev.appendChild(commenttPrev)
+    leftpagePrev.appendChild(quotelPrev)
+    leftpagePrev.appendChild(quotetPrev)
+    wallpaperPrev.appendChild(readPrev)
+    readPrev.appendChild(yesPrev)
+    readPrev.appendChild(readingPrev)
+    readPrev.appendChild(wanttoPrev)
+    readPrev.appendChild(p0)
+    yesPrev.appendChild(p1)
+    readingPrev.appendChild(p2)
+    wanttoPrev.appendChild(p3)
+            // class names
+    bookPrevCon.className = 'bookPrevCon'
+    wallpaperPrev.className = 'wallpaper'
+    titlePrev.className = 'titlePrev'
+    closeBtnPrev.className = 'close'
+    pageswrapperPrev.className = 'pageswrapperPrev'
+    rightpagePrev.className = 'rightpagePrev'
+    authorPrev.className = 'authorPrev'
+    pagesPrev.className = 'pagesPrev'
+    leftpagePrev.className = 'leftpagePrev'
+    commenttPrev.name = 'commentPrev'
+    commenttPrev.id = 'commentPrev'
+    commenttPrev.placeholder = 'Any comments about the book?'
+    quotetPrev.name = 'quotePrev'
+    quotetPrev.id = 'quotePrev'
+    quotetPrev.placeholder = 'Your faviourte quote here.'
+    readPrev.className = 'readPrev'
+    yesPrev.className = 'yesPrev'
+    readingPrev.className = 'readingPrev'
+    wanttoPrev.className = 'wanttoPrev'
+            // text content
+    titlePrev.textContent = cover.querySelector('.titleCon').textContent
+    authorPrev.textContent = `${cover.querySelector('.authorCon').textContent} is the Author of this book.`
+    pagesPrev.textContent = `This book has ${cover.querySelector('.pagesCon').textContent} pages`
+    commentlPrev.textContent = 'Comment'
+    quotelPrev.textContent = 'Quote'
+    p1.textContent = 'Yes'
+    p2.textContent = 'Reading it'
+    p3.textContent = 'Want to'
+    p0.textContent = 'Have you read this book?'
+    
+            // close button
+    closeBtnPrev.textContent = 'x'
+    closeBtnPrev.addEventListener('click', e=>{
+        bookPrevCon.remove()
+    })
+}
 })
