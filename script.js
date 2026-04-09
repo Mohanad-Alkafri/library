@@ -19,46 +19,93 @@ function addBookToLibrary(book){
 };
 
 const container = document.querySelector('.container')
+let shelfCon = document.createElement('div')
+shelfCon.className = 'shelfCon'
+container.appendChild(shelfCon)
 let shelf = document.createElement('div')
 shelf.className = ('shelf')
-container.appendChild(shelf)
+shelfCon.appendChild(shelf)
 let shelfBg = document.createElement('div')
 shelfBg.className = 'shelfBg'
-container.appendChild(shelfBg)
+shelfCon.appendChild(shelfBg)
+
 
 function newShelf (){
+    if(document.querySelectorAll('.shelf').length == 1 && library.length > 10){
+        shelfCon = document.createElement('div')
+        shelfCon.className = 'shelfCon'
+        container.appendChild(shelfCon)
         shelf = document.createElement('div')
-        shelf.className = ('shelf')
-        container.appendChild(shelf)
+        shelfCon.appendChild(shelf)
+        shelf.className = 'shelf'
         shelfBg = document.createElement('div')
         shelfBg.className = 'shelfBg'
-        container.appendChild(shelfBg)
-}
+        shelfCon.appendChild(shelfBg)
 
+        let remCon = document.createElement('div')
+        remCon.className = 'remCon'
+        let TshelfBg = document.querySelectorAll('.shelfBg')[1]
+        TshelfBg.appendChild(remCon)
+    }
+    if(document.querySelectorAll('.shelf').length == 2 && library.length > 20){
+        shelfCon = document.createElement('div')
+        shelfCon.className = 'shelfCon'
+        container.appendChild(shelfCon)
+        shelf = document.createElement('div')
+        shelfCon.appendChild(shelf)
+        shelf.className = 'shelf'
+        shelfBg = document.createElement('div')
+        shelfCon.appendChild(shelfBg)
+        shelfBg.className = 'shelfBg'
+
+        let remCon = document.createElement('div')
+        remCon.className = 'remCon'
+        let TshelfBg = document.querySelectorAll('.shelfBg')[2]
+        TshelfBg.appendChild(remCon)
+    }
+    else if(library.length == 1){
+        let remCon = document.createElement('div')
+        remCon.className = 'remCon'
+        let TshelfBg = document.querySelector('.shelfBg')
+        TshelfBg.appendChild(remCon)
+    }
+}
 
 // creat book covers and show info on screen
 function showBook (i){
+    newShelf()
     let cover = document.createElement('div')
     cover.className = 'cover'
-    if(library.length > 10 && library.length<20){
-        shelf = document.querySelector('.container > :nth-child(3)')
-        if(!shelf){
-            newShelf()
-        }
+    if(document.querySelectorAll('.shelf').length == 1){
         shelf.appendChild(cover)
     }
-    else if(library.length > 20){
-        shelf = document.querySelector('.container > :nth-child(5)')
-        if(!shelf){
-            newShelf()
-        }
+    if(document.querySelectorAll('.shelf').length == 2){
+        shelf = document.querySelectorAll('.shelf')[1]
         shelf.appendChild(cover)
     }
-    else{
-        shelf = document.querySelector('.container :first-child')
-        if(!shelf){newShelf()}
+    if(document.querySelectorAll('.shelf').length == 3){
+        shelf = document.querySelectorAll('.shelf')[2]
         shelf.appendChild(cover)
     }
+
+    // create remove button
+    let remBtn = document.createElement('div')
+    remBtn.className = 'remBtn'
+    if(document.querySelectorAll('.shelfBg').length == 1){
+        remCon = shelfBg.querySelector('.remCon')
+        remCon.appendChild(remBtn)
+    }
+    if(document.querySelectorAll('.shelfBg').length == 2){
+        shelfBg = document.querySelectorAll('.shelfBg')[1]
+        remCon = shelfBg.querySelector('.remCon')
+        remCon.appendChild(remBtn)
+    }
+    if(document.querySelectorAll('.shelfBg').length == 3){
+        shelfBg = document.querySelectorAll('.shelfBg')[2]
+        remCon = shelfBg.querySelector('.remCon')
+        remCon.appendChild(remBtn)
+    }
+
     // create info containers in cover
     const authorCon = document.createElement('p')
     authorCon.className = 'authorCon'
@@ -170,8 +217,8 @@ addBtn.addEventListener('click', e => {
     closeBtn.textContent = 'X'
     // required fields
     titlei.required = true
-    authori.required = true
-    pagesi.required = true
+    authori.required = false
+    pagesi.required = false
     readi1.required = true
     // submitting the data
     form.addEventListener('submit', e =>{
@@ -276,5 +323,42 @@ shelf.addEventListener('click', e=>{
     closeBtnPrev.addEventListener('click', e=>{
         bookPrevCon.remove()
     })
+        // read Status on cover
+    document.addEventListener('click', e=>{
+        const read = e.target.closest('.yesPrev')
+        const reading = e.target.closest('.readingPrev')
+        const wantto = e.target.closest('.wanttoPrev')
+        if(read || reading || wantto){
+            const TreadCon = cover.querySelector('.readCon')
+            const Tp = e.target.closest('p')
+            TreadCon.textContent = Tp.textContent
+            bookPrevCon.remove()
+        }
+        else return
+    })
 }
 })
+
+// remove book button
+document.addEventListener('click', e => {
+    const shelfBg = e.target.closest('.shelfBg')
+    if (!shelfBg) return
+
+    const shelfCon = shelfBg.closest('.shelfCon')
+    const shelf = shelfCon.querySelector('.shelf')
+    const remCon = shelfBg.querySelector('.remCon')
+
+    const booksArr = Array.from(shelf.children)
+    const remBtnArr = Array.from(remCon.children)
+
+    const btn = e.target.closest('.remBtn')
+    if (!btn) return
+
+    const index = remBtnArr.indexOf(btn)
+
+    if (index === -1) return
+
+    booksArr[index].remove()
+    remBtnArr[index].remove()
+})
+

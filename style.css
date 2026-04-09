@@ -73,7 +73,7 @@ nav .add{
     height: 80%;
     overflow: auto;
 }
-.container .shelf{
+.shelfCon .shelf{
     display: grid;
     grid-template-columns: repeat(auto-fit, 10%);
     justify-items: center;
@@ -123,6 +123,33 @@ nav .add{
 .pagesCon{
     font-size: 0.5em;
     cursor: pointer;
+}
+.remCon{
+    display: grid;
+    grid-template-columns: repeat(10 ,1fr);
+    width: 90%;
+    height: 100%;
+    margin-left: 4.5%;
+    justify-items: center;
+    align-items: center;
+}
+.shelfBg .remCon .remBtn{
+    background-image: url(toolsbox/remove.png);
+    background-color: white;
+    width: 30%;
+    height: 70%;
+    background-size: 110% 90%;
+    border-radius: 30%
+}
+        /* effects */
+.remCon .remBtn:hover{
+    background-color: red;
+    cursor: pointer;
+    transform: scale(0.95);
+}
+.cover:hover{
+    transform: rotateX(45deg);
+    transform: scale(0.95);
 }
 
 /* add book container */
